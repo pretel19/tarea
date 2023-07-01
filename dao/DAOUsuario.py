@@ -1,8 +1,20 @@
 import pymysql
+import mysql.connector
+
 
 class DAOUsuario:
     def connect(self):
-        return pymysql.connect(host="localhost",user="root",password="",db="alumnos" )
+        config = {
+        'user': '66ccdhwm4p33qkazs9us',
+        'password': 'pscale_pw_SGzB9mdS0ucXAt4hSHlk5BdTh6eS75m8EqBMjPKtwzd',
+        'host': 'aws.connect.psdb.cloud',
+        'database': 'alumnos',
+        'port': 'tu_puerto'
+            }
+
+    # Crea la conexión
+        return  mysql.connector.connect(host="aws.connect.psdb.cloud",user="66ccdhwm4p33qkazs9us",password="pscale_pw_SGzB9mdS0ucXAt4hSHlk5BdTh6eS75m8EqBMjPKtwzd",db="alumnos")
+        #return pymysql.connect(host="aws.connect.psdb.cloud",user="66ccdhwm4p33qkazs9us",password="pscale_pw_SGzB9mdS0ucXAt4hSHlk5BdTh6eS75m8EqBMjPKtwzd",db="alumnos" )
 
     def read(self, id):
         con = DAOUsuario.connect(self)
