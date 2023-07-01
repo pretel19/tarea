@@ -2,7 +2,7 @@ import pymysql
 
 class DAOUsuario:
     def connect(self):
-        return pymysql.connect(host="localhost",user="root",password="",db="db_poo" )
+        return pymysql.connect(host="localhost",user="root",password="",db="alumnos" )
 
     def read(self, id):
         con = DAOUsuario.connect(self)
@@ -10,9 +10,9 @@ class DAOUsuario:
 
         try:
             if id == None:
-                cursor.execute("SELECT * FROM usuario order by nombre asc")
+                cursor.execute("SELECT * FROM alumnos ")
             else:
-                cursor.execute("SELECT * FROM usuario where id = %s order by nombre asc", (id,))
+                cursor.execute("SELECT * FROM alumnos where id = %s ", (id,))
             return cursor.fetchall()
         except:
             return ()
@@ -24,7 +24,7 @@ class DAOUsuario:
         cursor = con.cursor()
 
         try:
-            cursor.execute("INSERT INTO usuario(nombre,telefono,email) VALUES(%s, %s, %s)", (data['nombre'],data['telefono'],data['email'],))
+            cursor.execute("INSERT INTO alumnos(username,nombre,apellido,clave) VALUES(%s,%s, %s, %s)", (data['username'],data['nombre'],data['apellido'],data['clave'],))
             con.commit()
             return True
         except:
@@ -52,7 +52,7 @@ class DAOUsuario:
         cursor = con.cursor()
 
         try:
-            cursor.execute("DELETE FROM usuario where id = %s", (id,))
+            cursor.execute("DELETE FROM alumnos where id = %s", (id,))
             con.commit()
             return True
         except:
